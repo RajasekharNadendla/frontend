@@ -54,10 +54,11 @@ pipeline{
         }
         stage('Deploy'){
             steps {
-                script{
-                    build job: 'frontend-deploy', parameters: [
-                            string(name: 'appVersion', value: "${appVersion}")
-                            ], wait: false 
+                 script{
+                    def params = [
+                        string(name: 'appVersion', value: "${appVersion}")
+                    ]
+                    build job: 'frontend-deploy', parameters: params, wait: false
                 }
             }
         }
